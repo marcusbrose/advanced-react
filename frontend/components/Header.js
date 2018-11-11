@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import NProgress from 'nprogress'
 import Nav from './Nav'
 import Cart from './Cart'
+import Search from './Search'
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -64,9 +65,7 @@ const Header = props => (
       <Nav />
     </div>
     <div className="sub-bar">
-      <p>
-        Search
-      </p>
+      <Search />
     </div>
     <Cart />
   </StyledHeader>
