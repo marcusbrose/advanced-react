@@ -3,6 +3,7 @@ import Router from 'next/router'
 import styled from 'styled-components'
 import NProgress from 'nprogress'
 import Nav from './Nav'
+import Cart from './Cart'
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -67,7 +68,7 @@ const Header = props => (
         Search
       </p>
     </div>
-    <div>Cart</div>
+    <Cart />
   </StyledHeader>
 )
 

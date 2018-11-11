@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Title from './styles/Title'
 import DeleteItem from './DeleteItem'
+import AddToCart from './AddToCart'
 import ItemStyles from './styles/ItemStyles'
 import PriceTag from './styles/PriceTag'
 import formatMoney from '../lib/formatMoney'
@@ -34,7 +35,7 @@ class Item extends React.Component {
         <div className="buttonList">
           <Link href={{ pathname: 'update', query: { id: item.id }}}><a>Edit</a></Link>
           <DeleteItem id={item.id}>Delete</DeleteItem>
-          <button>Add to cart</button>
+          <AddToCart id={item.id} />
         </div>
       </ItemStyles>
     )

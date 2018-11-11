@@ -17,12 +17,10 @@ class DeleteItem extends React.Component {
     // manually update the client cache
     // 1. read the cache
     const data = cache.readQuery({ query: ALL_ITEMS_QUERY })
-    console.log(data)
     // 2. filter delete item out
-    const items = data.items.filter(item => item.id !== payload.data.deleteItem.id)
+    data.items = data.items.filter(item => item.id !== payload.data.deleteItem.id)
     // 3. update the cache
-    cache.writeQuery({ query: ALL_ITEMS_QUERY, data: { items } })
-    console.log(cache.readQuery({ query: ALL_ITEMS_QUERY }))
+    cache.writeQuery({ query: ALL_ITEMS_QUERY, data })
   }
 
   render() {
@@ -31,9 +29,16 @@ class DeleteItem extends React.Component {
         mutation={DELETE_ITEM_MUTATION} 
         variables={{ id: this.props.id }}
         update={this.update}
+        optimisticResponse={{
+          __typename: 'Mutation',
+          deleteItem: {
+            __typename: 'Item',
+            id: this.props.id,
+          }
+        }}
       >
       {(deleteItem, { error, }) => (
-        <button onClick={() => { if (confirm('Sure?')) { deleteItem() }}}>
+        <button onClick={() => { if (confirm('Sure?')) { deleteItem().catch(error => {alert(error.message)}) }}}>
           {this.props.children}
         </button>
       )}
