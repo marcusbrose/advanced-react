@@ -48,8 +48,7 @@ const CartCount = ({ count }) => (
         className="count"
         classNames="count"
         key={count}
-        timeout={400}
-        exit={400}
+        timeout={{ enter: 400, exit: 400 }}
       >
         <Dot>
           {count}
